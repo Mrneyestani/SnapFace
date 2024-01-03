@@ -1,24 +1,28 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { FaceSnap } from '../models/face-snap.model';
-import { CommonModule } from '@angular/common';
 import { FaceSnapsService } from '../services/face-snaps.service';
-import { Router } from '@angular/router';
+import { CommonModule} from '@angular/common';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+
+
 @Component({
-  selector: 'app-face-snap',
+  selector: 'app-single-face-snap',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './face-snap.component.html',
-  styleUrl: './face-snap.component.scss',
+  imports: [CommonModule, RouterModule],
+  templateUrl: './single-face-snap.component.html',
+  styleUrl: './single-face-snap.component.scss'
 })
-export class FaceSnapComponent implements OnInit {
-  @Input() faceSnap!: FaceSnap;
+export class SingleFaceSnapComponent {
+  faceSnap! : FaceSnap;
   buttonText!: string;
   snaped!: boolean;
-  constructor(private faceSnapsService: FaceSnapsService, 
-              private router: Router) {}
+  constructor(private faceSnapsService: FaceSnapsService,
+              private route: ActivatedRoute) {}
   ngOnInit() {
     this.buttonText = 'Oh Snap!';
     this.snaped = false;
+    const faceSnapId = +this.route.snapshot.params['id'];
+    this.faceSnap = this.faceSnapsService.getFaceSnapById(faceSnapId);
   }
   //solution 1
   onSnap() {
@@ -31,10 +35,6 @@ export class FaceSnapComponent implements OnInit {
       this.buttonText = 'Oh Snap!';
       this.snaped = false;
     }
-  }
-
-  onViewFaceSnap(){
-    this.router.navigateByUrl(`facesnaps/${this.faceSnap.id}`)
   }
   //solution 2
   // onSnap() {

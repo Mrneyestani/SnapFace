@@ -5,6 +5,9 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { routes } from './app.routes';
 
+
+Source: https://prograide.com/pregunta/35202/angular-routerlink-ne-navigue-pas-vers-le-composant-correspondant
+
 // Enregistrez la locale française
 registerLocaleData(localeFr);
 
