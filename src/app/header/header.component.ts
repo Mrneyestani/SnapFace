@@ -11,4 +11,10 @@ import { Router, RouterModule} from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+
+  constructor(private router: Router) {  };
+  onAddNewFaceSnap(): void{
+    this.router.navigateByUrl('/create')
+
+  }
 }
