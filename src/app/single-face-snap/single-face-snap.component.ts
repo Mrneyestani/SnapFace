@@ -3,6 +3,7 @@ import { FaceSnap } from '../models/face-snap.model';
 import { FaceSnapsService } from '../services/face-snaps.service';
 import { CommonModule} from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Observable, tap } from 'rxjs';
 
 
 @Component({
@@ -13,7 +14,8 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
   styleUrl: './single-face-snap.component.scss'
 })
 export class SingleFaceSnapComponent {
-  faceSnap! : FaceSnap;
+  // faceSnap! : FaceSnap;
+  faceSnap$!: Observable<FaceSnap>;
   buttonText!: string;
   snaped!: boolean;
   constructor(private faceSnapsService: FaceSnapsService,
@@ -22,20 +24,27 @@ export class SingleFaceSnapComponent {
     this.buttonText = 'Oh Snap!';
     this.snaped = false;
     const faceSnapId = +this.route.snapshot.params['id'];
-    this.faceSnap = this.faceSnapsService.getFaceSnapById(faceSnapId);
+    this.faceSnap$ = this.faceSnapsService.getFaceSnapById(faceSnapId);
   }
   //solution 1
-  onSnap() {
+  onSnap(faceSnapId: number) {
     if (!this.snaped) {
-      this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'snap');
-      this.buttonText = 'Oops, unSnap!';
-      this.snaped = true;
+      this.faceSnap$ = this.faceSnapsService.snapFaceSnapById(faceSnapId,'snap' ).pipe(
+        tap(() => {
+          this.buttonText = 'Oops, unSnap!';
+          this.snaped = true;
+        })
+      );    
     } else {
-      this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'unsnap');
-      this.buttonText = 'Oh Snap!';
-      this.snaped = false;
-    }
+      this.faceSnap$ = this.faceSnapsService.snapFaceSnapById(faceSnapId,'unsnap' ).pipe(
+        tap(() => {
+          this.buttonText = 'Oh Snap!';
+          this.snaped = true;
+        })
+      );  
   }
+}
+}
   //solution 2
   // onSnap() {
   //   if (this.buttonText === 'Oh Snap!') {
@@ -46,4 +55,4 @@ export class SingleFaceSnapComponent {
   //     this.buttonText = 'Oh Snap!';
   //   }
   // }
-}
+

@@ -6,6 +6,7 @@ import { FaceSnapListComponent } from "./face-snap-list/face-snap-list.component
 import { HeaderComponent } from "./header/header.component";
 // import { Observable, Subject, concatMap, delay, filter, interval, map, mergeMap, of, take, tap } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -14,7 +15,7 @@ import { FormsModule } from '@angular/forms';
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [CommonModule,RouterModule, RouterOutlet, FaceSnapComponent, FaceSnapListComponent, HeaderComponent, FormsModule]
+    imports: [CommonModule,RouterModule, RouterOutlet, FaceSnapComponent, FaceSnapListComponent, HeaderComponent, FormsModule, HttpClientModule]
 })
 export class AppComponent implements OnInit {
   // interval$! : Observable<string>;
