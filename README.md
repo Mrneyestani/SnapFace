@@ -1,6 +1,7 @@
 # Snapface
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
+Required node version is version 12.15.0 or 14.15.0
 
 ## Development server and Run
 
