@@ -1,20 +1,19 @@
-import { Component } from '@angular/core';
-import { Router, RouterModule} from '@angular/router';
-
-
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [RouterModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) {  };
-  onAddNewFaceSnap(): void{
-    this.router.navigateByUrl('facesnaps/create')
+  constructor(private router: Router) { }
 
+  ngOnInit(): void {
+  }
+
+  onAddNewFaceSnap() {
+    this.router.navigateByUrl('/facesnaps/create');
   }
 }

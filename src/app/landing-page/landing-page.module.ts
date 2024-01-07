@@ -3,15 +3,12 @@ import { CommonModule } from '@angular/common';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { FormsModule } from '@angular/forms';
 
-
-
 @NgModule({
   declarations: [
-    // LandingPageComponent
+    LandingPageComponent
   ],
   imports: [
     CommonModule,
-    LandingPageComponent,
     FormsModule
   ],
   exports: [

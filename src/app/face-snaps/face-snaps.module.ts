@@ -5,33 +5,21 @@ import { FaceSnapListComponent } from './components/face-snap-list/face-snap-lis
 import { NewFaceSnapComponent } from './components/new-face-snap/new-face-snap.component';
 import { SingleFaceSnapComponent } from './components/single-face-snap/single-face-snap.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { FaceSnapsRoutingModule } from './face-snaps-routing.module';
-
-
-
 
 @NgModule({
   declarations: [
-    // FaceSnapComponent,
-    // FaceSnapListComponent,
-    // NewFaceSnapComponent,
-    // SingleFaceSnapComponent
-
-
-  ],
-  imports: [
-    CommonModule,
     FaceSnapComponent,
     FaceSnapListComponent,
     NewFaceSnapComponent,
-    SingleFaceSnapComponent,
-    ReactiveFormsModule,
-    FaceSnapsRoutingModule,
-    HttpClientModule
-
+    SingleFaceSnapComponent
   ],
-  exports:[
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FaceSnapsRoutingModule
+  ],
+  exports: [
     FaceSnapComponent,
     FaceSnapListComponent,
     NewFaceSnapComponent,
