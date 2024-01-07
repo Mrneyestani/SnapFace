@@ -4,6 +4,7 @@ import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { routes } from './app.routes';
+import { httpInterceptorProviders } from './interceptors';
 
 
 Source: https://prograide.com/pregunta/35202/angular-routerlink-ne-navigue-pas-vers-le-composant-correspondant
@@ -12,5 +13,5 @@ Source: https://prograide.com/pregunta/35202/angular-routerlink-ne-navigue-pas-v
 registerLocaleData(localeFr);
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), { provide: LOCALE_ID, useValue: 'fr-FR' }],
+  providers: [provideRouter(routes), { provide: LOCALE_ID, useValue: 'fr-FR' }, httpInterceptorProviders],
 };
